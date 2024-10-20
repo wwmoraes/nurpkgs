@@ -31,7 +31,21 @@ packages locally. Check the `Taskfile.yaml` or use `task -l` for more commands.
 
 ## 🎈 Usage
 
-You can either use this repository standalone or through NUR.
+You can either use this repository standalone or through NUR. See instructions
+below.
+
+There's also a cache so you don't need to build everything from scratch. Use
+`cachix use wwmoraes` or configure it manually in your `nix.conf`:
+
+- substituter: `https://wwmoraes.cachix.org`
+- public key: `wwmoraes.cachix.org-1:N38Kgu19R66Jr62aX5rS466waVzT5p/Paq1g6uFFVyM=`
+
+You should end up with something like this:
+
+```text
+substituters = https://cache.nixos.org https://wwmoraes.cachix.org
+trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= wwmoraes.cachix.org-1:N38Kgu19R66Jr62aX5rS466waVzT5p/Paq1g6uFFVyM=
+```
 
 ### Standalone
 

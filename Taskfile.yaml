@@ -14,3 +14,6 @@ tasks:
     vars:
       NAME: '{{ index .MATCH 0 }}'
     cmd: nix-build default.nix -A {{ .NAME }} --no-out-link
+  push:
+    desc: Pushes built packages to the cache.
+    cmd: nix-build default.nix --no-out-link | cachix push wwmoraes

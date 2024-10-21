@@ -11,7 +11,7 @@
 		ejson = callPackage ./pkgs/ejson.nix { };
 		go-commitlint = callPackage ./pkgs/go-commitlint.nix { };
 		gopium = callPackage ./pkgs/gopium.nix { };
-		goutline = callPackage ./pkgs/goutline.nix { };
+		goutline = callPackage ./pkgs/goutline { };
 		kroki = callPackage ./pkgs/kroki.nix { };
 		kroki-cli = callPackage ./pkgs/kroki-cli.nix { };
 		pkgsite = callPackage ./pkgs/pkgsite.nix { };

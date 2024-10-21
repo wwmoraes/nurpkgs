@@ -5,6 +5,9 @@
 	callPackage = pkgs.lib.callPackageWith (pkgs // self);
 	self = {
 		modules = import ./modules;
+		nix-darwin = {
+			modules = import ./nix-darwin/modules;
+		};
 		ejson = callPackage ./pkgs/ejson.nix { };
 		go-commitlint = callPackage ./pkgs/go-commitlint.nix { };
 		gopium = callPackage ./pkgs/gopium.nix { };

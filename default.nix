@@ -1,8 +1,17 @@
-{
-	system ? builtins.currentSystem,
-	pkgs ? import <nixpkgs> { inherit system; }
+{ system ? builtins.currentSystem
+, pkgs ? import <nixpkgs> { inherit system; }
 }: let
-	callPackage = pkgs.lib.callPackageWith (pkgs // self);
+	nixpkgs = pkgs.lib.recursiveUpdate pkgs {
+		lib.maintainers.wwmoraes = {
+			email = "nixpkgs@artero.dev";
+			github = "wwmoraes";
+			githubId = 682095;
+			keys = [ { fingerprint = "32B4 330B 1B66 828E 4A96  9EEB EED9 9464 5D7C 9BDE"; } ];
+			matrix = "@wwmoraes:hachyderm.io";
+			name = "William Artero";
+		};
+	};
+	callPackage = nixpkgs.lib.callPackageWith (nixpkgs // self);
 	self = {
 		modules = import ./modules;
 		nix-darwin = {

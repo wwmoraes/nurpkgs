@@ -31,3 +31,39 @@ tasks:
     vars:
       TARGET: '{{ index .MATCH 0 }}'
     cmd: nil diagnostics {{ .TARGET }}
+  eval:
+    desc: Evaluates repository as per NUR. It must succeed to update the index.
+    deps:
+    - task: submodules
+    vars:
+      TARGET: '{{ joinPath .ROOT_DIR "default.nix" }}'
+      NURLIB: '{{ joinPath .ROOT_DIR "NUR" }}'
+      NIXPKGS:
+        sh: nix-instantiate --eval '<nixpkgs>' -A path
+    cmd: >-
+      env PAGER=cat
+      nix-env
+      -f {{ .TARGET | q }}
+      -qa '*'
+      --meta
+      --xml
+      --allowed-uris https://static.rust-lang.org
+      --option restrict-eval true
+      --option allow-import-from-derivation true
+      --drv-path
+      --show-trace
+      -I nixpkgs={{ .NIXPKGS }}
+      -I {{ .NURLIB }}/lib/evalRepo.nix
+      -I {{ .TARGET | q }}
+      -I {{ joinPath .ROOT_DIR "pkgs" | q }}
+      -I {{ joinPath .ROOT_DIR "modules" | q }}
+  submodules:
+    internal: true
+    vars:
+      GENERATES:
+        sh: git submodule foreach -q 'echo $displaypath/**'
+    cmd: git submodule update --force --checkout
+    sources:
+    - .gitmodules
+    generates:
+    - '{{ .GENERATES }}'

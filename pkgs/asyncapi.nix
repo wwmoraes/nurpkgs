@@ -11,10 +11,10 @@ buildNpmPackage rec {
 		hash = "sha256-gbA2/O5Q18uHyCZX99cPfpGMTYqffyR6sisEmeFLy6A=";
 	};
 
-	npmDeps = importNpmLock {
-		npmRoot = src;
-	};
-	npmConfigHook = importNpmLock.npmConfigHook;
+	# npmDeps = importNpmLock {
+	# 	npmRoot = src;
+	# };
+	# npmConfigHook = importNpmLock.npmConfigHook;
 
 	npmDepsHash = "sha256-tZgnKJW49/y1+hSBjwFXCJrplBkkL87Bux7LqOoNSAg=";
 	npmPackFlags = [ "--ignore-scripts" ];

@@ -18,16 +18,17 @@
 			modules = import ./nix-darwin/modules;
 		};
 
-		codecov-cli-bin = callPackage ./pkgs/codecov-cli-bin.nix { };
-		git-credential-azure = callPackage ./pkgs/git-credential-azure.nix { };
-		gopium = callPackage ./pkgs/gopium.nix { };
-		goutline = callPackage ./pkgs/goutline { };
-		kroki = callPackage ./pkgs/kroki.nix { };
-		kroki-cli = callPackage ./pkgs/kroki-cli.nix { };
-		pkgsite = callPackage ./pkgs/pkgsite.nix { };
-		structurizr-cli = callPackage ./pkgs/structurizr-cli.nix { };
-		structurizr-site-generatr = callPackage ./pkgs/structurizr-site-generatr.nix { };
-		visudo = callPackage ./pkgs/visudo.nix { };
-		yamlfixer = callPackage ./pkgs/yamlfixer.nix { };
-	};
-in self
+    codecov-cli-bin = callPackage ./pkgs/codecov-cli-bin.nix { };
+    git-credential-azure = callPackage ./pkgs/git-credential-azure.nix { };
+    gopium = callPackage ./pkgs/gopium.nix { };
+    goutline = callPackage ./pkgs/goutline { };
+    kroki = callPackage ./pkgs/kroki.nix { };
+    kroki-cli = callPackage ./pkgs/kroki-cli.nix { };
+    pkgsite = callPackage ./pkgs/pkgsite.nix { };
+    structurizr-cli = callPackage ./pkgs/structurizr-cli.nix { };
+    structurizr-site-generatr = callPackage ./pkgs/structurizr-site-generatr.nix { };
+    visudo = callPackage ./pkgs/visudo.nix { };
+    yamlfixer = callPackage ./pkgs/yamlfixer.nix { };
+  };
+in
+self

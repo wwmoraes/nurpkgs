@@ -1,12 +1,14 @@
-{ buildGoModule, fetchgit, lib }:
+{ buildGoModule, fetchFromGitHub, lib }:
 
-buildGoModule {
+buildGoModule rec {
 	pname = "pkgsite";
-	version = "0.0.0+557c002897fca2516fc696a6a39fa978ff5a719a";
+	version = "0.0.0+${rev}";
+	rev = "557c002897fca2516fc696a6a39fa978ff5a719a";
 
-	src = fetchgit {
-		url = "https://go.googlesource.com/pkgsite";
-		rev = "557c002897fca2516fc696a6a39fa978ff5a719a";
+	src = fetchFromGitHub {
+		inherit rev;
+		owner = "golang";
+		repo = "pkgsite";
 		hash = "sha256-RM1I5FeM8ZHn2AmSx5kUD/IqyTi4Up6Ab/j1FJ+ZfYU=";
 	};
 

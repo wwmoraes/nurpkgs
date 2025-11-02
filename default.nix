@@ -22,7 +22,6 @@ let
 
       codecov-cli-bin = callPackage ./pkgs/codecov-cli-bin.nix { };
       git-credential-azure = callPackage ./pkgs/git-credential-azure.nix { };
-      gopium = callPackage ./pkgs/gopium.nix { };
       goutline = callPackage ./pkgs/goutline { };
       kroki = callPackage ./pkgs/kroki.nix { };
       kroki-cli = callPackage ./pkgs/kroki-cli.nix { };

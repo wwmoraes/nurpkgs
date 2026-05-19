@@ -39,15 +39,16 @@
       ];
 
       flake = {
-        overlays.default =
-          final: prev:
-          prev.lib.recursiveUpdate prev {
-            nur.repos.wwmoraes = import ./default.nix {
-              inherit (prev) system;
-              pkgs = prev;
+        overlays = (import ./overlays) // {
+          default =
+            final: prev:
+            prev.lib.recursiveUpdate prev {
+              nur.repos.wwmoraes = import ./default.nix {
+                inherit (prev) system;
+                pkgs = prev;
+              };
             };
-          };
-
+        };
       };
 
       perSystem =

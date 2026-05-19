@@ -19,6 +19,7 @@ let
       hmModules = homeManagerModules;
       homeManagerModules = import ./modules/home-manager;
       treefmtModules = import ./modules/treefmt;
+      overlays = import ./overlays;
 
       codecov-cli-bin = callPackage ./pkgs/codecov-cli-bin.nix { };
       git-credential-azure = callPackage ./pkgs/git-credential-azure.nix { };

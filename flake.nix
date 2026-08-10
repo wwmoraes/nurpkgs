@@ -3,13 +3,21 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-utils = {
+      inputs.systems.follows = "systems";
+      url = "github:numtide/flake-utils";
+    };
+    gomod2nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      url = "github:nix-community/gomod2nix";
+    };
+    synology-nix-installer.url = "github:sini/synology-nix-installer";
     systems.url = "github:nix-systems/default";
     treefmt-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:numtide/treefmt-nix";
     };
-    synology-nix-installer.url = "github:sini/synology-nix-installer";
-
   };
 
   nixConfig = {
@@ -68,6 +76,8 @@
             overlays = [
               self.overlays.default
               inputs.synology-nix-installer.overlays.default
+              inputs.gomod2nix.overlays.default
+              self.overlays.gomod2nix
             ];
             config = { };
           };
@@ -90,6 +100,9 @@
 
           legacyPackages =
             import ./default.nix { inherit pkgs system; }
+            // lib.optionalAttrs (pkgs ? gomod2nix) {
+              inherit (pkgs) gomod2nix;
+            }
             // lib.optionalAttrs (lib.hasSuffix "-linux" system) {
               inherit (pkgs) nix-installer-static;
             };

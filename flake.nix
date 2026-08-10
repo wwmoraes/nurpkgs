@@ -8,8 +8,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:numtide/treefmt-nix";
     };
-    synology-nix-installer.url = "github:sini/synology-nix-installer";
-
+    synology-nix-installer = {
+      # optimize upstream flake inputs
+      inputs.determinate.inputs = {
+        fh.inputs = {
+          fenix.follows = "synology-nix-installer/fenix";
+          naersk.follows = "synology-nix-installer/naersk";
+          nixpkgs.follows = "nixpkgs";
+        };
+      };
+      inputs.nix = {
+        inputs.nix = {
+          inputs.flake-compat.follows = "synology-nix-installer/flake-compat";
+          inputs.flake-parts.follows = "flake-parts";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:sini/synology-nix-installer";
+    };
   };
 
   nixConfig = {

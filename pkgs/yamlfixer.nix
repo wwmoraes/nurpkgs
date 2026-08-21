@@ -30,5 +30,6 @@ python3Packages.buildPythonApplication (finalAttrs: {
     license = lib.licenses.gpl3Plus;
     mainProgram = "yamlfixer";
     maintainers = with lib.maintainers; [ wwmoraes ];
+    platforms = lib.platforms.all;
   };
 })

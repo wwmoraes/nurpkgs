@@ -45,5 +45,6 @@ buildGoModule (finalAttrs: {
     license = lib.licenses.asl20;
     mainProgram = "frizbee";
     maintainers = with lib.maintainers; [ wwmoraes ];
+    platforms = lib.platforms.all;
   };
 })

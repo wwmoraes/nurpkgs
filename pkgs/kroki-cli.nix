@@ -27,5 +27,6 @@ buildGoModule (finalAttrs: {
     license = lib.licenses.mit;
     mainProgram = "kroki";
     maintainers = with lib.maintainers; [ wwmoraes ];
+    platforms = lib.platforms.all;
   };
 })

@@ -26,5 +26,6 @@ buildGoModule (finalAttrs: {
     license = lib.licenses.mit;
     mainProgram = "goutline";
     maintainers = with lib.maintainers; [ wwmoraes ];
+    platforms = lib.platforms.all;
   };
 })

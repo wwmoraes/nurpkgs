@@ -117,7 +117,9 @@
               inherit (pkgs) gomod2nix;
             }
             // lib.optionalAttrs (lib.hasSuffix "-linux" system) {
-              inherit (pkgs) nix-installer-static;
+              nix-installer-static = pkgs.nix-installer-static.overrideAttrs (prev: {
+                meta.platforms = prev.meta.platforms or lib.platforms.all;
+              });
             };
         };
 

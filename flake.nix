@@ -22,6 +22,9 @@
 
   nixConfig = {
     builders-use-substitutes = true;
+    extra-experimental-features = [
+      "pipe-operators"
+    ];
     substituters = [
       "https://cache.nixos.org/"
       "https://nix-community.cachix.org/"
@@ -68,7 +71,16 @@
           ...
         }:
         let
-          drvPackages = lib.filterAttrs (_: v: lib.isDerivation v) self'.legacyPackages;
+          # filters out derivations for the target system
+          drvPackages =
+            let
+              hasPlatformsMeta = drv: builtins.hasAttr "platforms" drv.meta;
+            in
+            self'.legacyPackages
+            |> lib.filterAttrs (_: pkg: lib.isDerivation pkg)
+            |> lib.filterAttrs (
+              _: drv: if hasPlatformsMeta drv then builtins.elem system drv.meta.platforms else true
+            );
         in
         {
           _module.args.pkgs = import inputs.nixpkgs {
@@ -83,6 +95,7 @@
           };
 
           checks = drvPackages;
+
           devShells = import ./shell.nix { inherit pkgs system; };
           # explicitly skip modules as they break nix flake check; in fact the
           # upstream NUR suggestion is an abuse of the packages attribute. They

@@ -56,11 +56,11 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook postInstallCheck
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Codecov's Command Line Interface. Used for uploading to Codecov in your CI, Test Labelling, Local Upload, and more";
-    mainProgram = "codecov";
-    license = licenses.asl20;
     homepage = "https://github.com/codecov/codecov-cli";
-    maintainers = [ maintainers.wwmoraes ];
+    license = lib.licenses.asl20;
+    mainProgram = "codecov";
+    maintainers = with lib.maintainers; [ wwmoraes ];
   };
 })

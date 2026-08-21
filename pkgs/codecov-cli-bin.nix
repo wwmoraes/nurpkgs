@@ -62,5 +62,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     license = lib.licenses.asl20;
     mainProgram = "codecov";
     maintainers = with lib.maintainers; [ wwmoraes ];
+    sourceProvenance = with lib.sourceTypes; [ binaryBytecode ];
   };
 })

@@ -121,6 +121,6 @@
             };
         };
 
-      systems = inputs.nixpkgs.lib.subtractLists [ "x86_64-darwin" ] (import inputs.systems);
+      systems = builtins.filter (system: system != "x86_64-darwin") (import inputs.systems);
     });
 }

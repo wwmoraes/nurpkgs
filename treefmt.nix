@@ -1,6 +1,8 @@
 {
   imports = [
     ./modules/treefmt/checkmake.nix
+    ./modules/treefmt/shellcheck-posix.nix
+    ./modules/treefmt/shellcheck-bash.nix
   ];
 
   projectRootFile = "flake.nix";
@@ -21,6 +23,8 @@
   };
   programs.nixf-diagnose.enable = true;
   programs.nixfmt.enable = true;
+  programs.shellcheck-bash.enable = true;
+  programs.shellcheck-posix.enable = true;
   programs.statix.enable = true;
   programs.typos = {
     enable = true;

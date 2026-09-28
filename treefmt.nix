@@ -8,7 +8,7 @@
   programs.checkmake = {
     enable = true;
     settings = {
-      maxbodylength.maxBodyLength = 10;
+      maxbodylength.maxBodyLength = 15;
     };
   };
   programs.keep-sorted.enable = true;
@@ -24,7 +24,7 @@
   programs.statix.enable = true;
   programs.typos = {
     enable = true;
-    # configFile = builtins.toString ./.typos.toml;
+    configFile = toString ./.typos.toml;
   };
   programs.yamlfmt = {
     enable = true;
